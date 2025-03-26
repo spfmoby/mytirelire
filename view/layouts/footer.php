@@ -1,4 +1,4 @@
 <hr>
-©<?php echo date('Y'); ?>, spfmoby<br>
+©<?php echo date('Y'); ?><br>
 </body>
 </html>
