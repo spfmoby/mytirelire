@@ -86,55 +86,22 @@ public function getCompteIdByEmail($email) {
 
 
 
-  // EN DESSOUS INUTILE
-
-  public function consulterSolde($id) {
-    // Consulter le solde du compte et les 50 dernières transactions par ordre décroissant
-    $stmt = $this->conn->prepare('SELECT * FROM comptes WHERE id = :id');
-    $stmt->bindParam(':id', $id);
-    $compte = $stmt->fetchObject();
   
-    $stmt = $this->conn->prepare('SELECT * FROM transactions WHERE compte_id = :id ORDER BY date DESC LIMIT 50');
-    $stmt->bindParam(':id', $id);
-    return array($compte, $stmt->execute()->fetchAll());
-  }
-  
-  public function modifierSupprimerTransaction($id, $codePIN) {
-    // Consulter les informations de la transaction
-    $stmt = $this->conn->prepare('SELECT * FROM transactions WHERE id = :id');
-    $stmt->bindParam(':id', $id);
-    return $stmt->fetchObject();
-  }
-  
-  public function paginationTransactions($id, $page) {
+  public function paginationTransactions($utilisateur_id, $page) {
     // Charger les transactions pour la page sélectionnée
-    $stmt = $this->conn->prepare('SELECT * FROM transactions WHERE compte_id = :id ORDER BY date DESC LIMIT 50 OFFSET (:page - 1) * 50');
-    $stmt->bindParam(':id', $id);
+    $stmt = $this->conn->prepare('SELECT * FROM transactions WHERE utilisateur_id = :utilisateur_id ORDER BY date DESC LIMIT 50 OFFSET (:page - 1) * 50');
+    $stmt->bindParam(':utilisateur_id', $utilisateur_id);
     $stmt->bindParam(':page', $page);
     return $stmt->execute()->fetchAll();
   }
 
-  public function ajouterTransactionDepot($id, $montant, $codePIN) {
-    // Ajouter une transaction de dépôt
-    $stmt = $this->conn->prepare('INSERT INTO transactions (compte_id, montant, type) VALUES (:id, :montant, "dépôt")');
-    $stmt->bindParam(':id', $id);
+  public function ajouterTransaction($utilisateur_id, $montant, $type) {
+    // Ajouter une transaction
+    $stmt = $this->conn->prepare('INSERT INTO transactions (utilisateur_id, montant, type) VALUES (:compte_id, :utilisateur_id, :montant, :type)');
+    $stmt->bindParam(':utilisateur_id', $utilisateur_id);
     $stmt->bindParam(':montant', $montant);
+    $stmt->bindParam(':type', $type);
     return $stmt->execute();
   }
 
-  public function ajouterTransactionRetrait($id, $montant, $codePIN) {
-    // Ajouter une transaction de retrait
-    $stmt = $this->conn->prepare('INSERT INTO transactions (compte_id, montant, type) VALUES (:id, :montant, "retrait")');
-    $stmt->bindParam(':id', $id);
-    $stmt->bindParam(':montant', $montant);
-    return $stmt->execute();
-  }
-
-  public function annulerTransaction($id, $transaction_id) {
-    // Annuler une transaction
-    $stmt = $this->conn->prepare('DELETE FROM transactions WHERE id = :id AND compte_id = :compte_id');
-    $stmt->bindParam(':id', $transaction_id);
-    $stmt->bindParam(':compte_id', $id);
-    return $stmt->execute();
-  }
 }

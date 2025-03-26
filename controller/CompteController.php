@@ -10,10 +10,6 @@ class CompteController {
     $this->dao = new CompteDAO();
   }
 
-  public function indexAction() {
-    return $this->indexView();
-  }
-
   public function creerCompte() {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $email = $_POST['email'];
@@ -68,5 +64,5 @@ class CompteController {
         header('Location: index.php?action=connexion');
         exit();
     }
-}
+  }
 }
