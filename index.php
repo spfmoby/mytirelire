@@ -29,7 +29,10 @@ switch ($_GET['action']) {
             $compteCtrl->afficherFormConnexion();
         }
         break;
-      case 'creationCompte':
+    case 'deconnexion':
+            $compteCtrl->deconnexion();
+            break;
+    case 'creationCompte':
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $compteCtrl->creerCompte();
         } else {

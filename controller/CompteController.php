@@ -63,6 +63,14 @@ class CompteController {
     return isset($_SESSION['compte_id']);
   }
 
+  public function deconnexion() {
+  if($this->estConnecte())  {
+       unset($_SESSION['compte_id']);
+     }
+     header('Location: index.php?action=accueil');
+
+  }
+
   public function listeUtilisateurs() {
     if ($this->estConnecte()) {
       $compteDAO = new CompteDAO();

@@ -1,3 +1,5 @@
+
+<?php require_once 'layouts/header.php'; ?>
 <?php
 
 // Afficher le formulaire de connexion
@@ -10,3 +12,5 @@
   <input type="password" id="password" name="password"><br><br>
   <input type="submit" value="Se connecter">
 </form>
+<?php require_once 'layouts/footer.php'; ?>
+
