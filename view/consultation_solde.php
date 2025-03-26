@@ -1,10 +1,9 @@
 <?php
-
-require_once '../layouts/header.php'; ?>
+require_once 'layouts/header.php'; 
 // Afficher la consultation du solde
 
-$compte = $_SESSION['compte'];
-$transactions = $_SESSION['transactions'];
+//$compte = $_SESSION['compte'];
+//$transactions = $_SESSION['transactions'];
 
 ?>
 
@@ -61,6 +60,5 @@ if ($totalPages > 1) {
 ?>
 
 
-<a href="?action=modificationCompte&id=<?= $_SESSION['compte']['id'] ?>">Modifier compte</a>
 
 <?php require_once '../layouts/footer.php'; ?>
