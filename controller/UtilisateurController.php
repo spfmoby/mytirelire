@@ -10,13 +10,20 @@ class UtilisateurController {
     $this->dao = new UtilisateurDAO();
   }
 
+  public function afficherFormCreerUtilisateur() {
+    include('view/creation_utilisateur.php');
+  }
+
   public function creerUtilisateur() {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $pseudo = $_POST['pseudo'];
       $picto = $_POST['picto'];
-
       // Créer un objet Compte avec les données du formulaire
-      $utilisateur = new Utilisateur($pseudo, $picto);
+      $utilisateur = new Utilisateur(array(
+        'pseudo' => $pseudo,
+        'picto' => $picto,
+        'solde' => 0
+      ));
       // Insérer le compte en base de données
       $utilisateurDao = new UtilisateurDAO();
       $utilisateurDao->insererUtilisateur($utilisateur);

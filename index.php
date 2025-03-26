@@ -26,30 +26,32 @@ switch ($_GET['action']) {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $compteCtrl->connexionCompte();
         } else {
-            include('view/connexion.php');
+            $compteCtrl->afficherFormConnexion();
         }
         break;
       case 'creationCompte':
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $compteCtrl->creerCompte();
         } else {
-            include('view/creation_compte.php');
+            $compteCtrl->afficherFormCreerCompte();
         }
         break;
     case 'listeUtilisateurs':
-        $listeUtilisateurs = $compteCtrl->listeUtilisateurs();
+        $compteCtrl->afficherListeUtilisateurs();
+        /*$listeUtilisateurs = $compteCtrl->listeUtilisateurs();
         include('view/liste_utilisateurs.php');
+        */
 
         break;
     case 'creationUtilisateur':
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $utilisateurCtrl->creerutilisateur();
         } else {
-            include('view/creation_utilisateur.php');
+            $utilisateurCtrl->afficherFormCreerUtilisateur();
         }
         break;
     case 'solde':
-        $compteCtrl->afficherSolde();
+        $utilisateurCtrl->afficherSolde();
         break;
     default:
         include('view/accueil.php');

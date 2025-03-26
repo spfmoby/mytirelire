@@ -10,6 +10,10 @@ class CompteController {
     $this->dao = new CompteDAO();
   }
 
+  public function afficherFormCreerCompte() {
+    include_once 'view/creation_compte.php';
+  }
+
   public function creerCompte() {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $email = $_POST['email'];
@@ -28,6 +32,9 @@ class CompteController {
     }
   }
 
+  public function afficherFormConnexion() {
+    include_once 'view/connexion.php';
+  }
 
   public function connexionCompte() {
     $email = $_POST['email'];
@@ -64,5 +71,10 @@ class CompteController {
         header('Location: index.php?action=connexion');
         exit();
     }
+  }
+
+  public function afficherListeUtilisateurs() {
+    $listeUtilisateurs = $this->listeUtilisateurs();
+    include('view/liste_utilisateurs.php');
   }
 }
