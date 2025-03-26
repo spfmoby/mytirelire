@@ -26,7 +26,6 @@ require_once 'layouts/header.php';
     <td><?= $transaction->date ?></td>
     <td><?= $transaction->montant ?></td>
     <td><?= $transaction->type ?></td>
-    <td><a href="modifier_transaction.php?id=<?= $transaction->id ?>&codePIN=<?= $_SESSION['compte']['codePIN'] ?>">Modifier</a> | <a href="supprimer_transaction.php?id=<?= $transaction->id ?>&codePIN=<?= $_SESSION['compte']['codePIN'] ?>">Supprimer</a></td>
   </tr>
   <?php } ?>
 </table>
