@@ -5,6 +5,7 @@ session_start();
 
 
 require_once 'db.php';
+require_once 'controller/BaseController.php';
 require_once 'controller/CompteController.php';
 require_once 'controller/UtilisateurController.php';
 

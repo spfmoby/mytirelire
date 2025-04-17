@@ -1,6 +1,6 @@
 <?php
 
-class UtilisateurController {
+class UtilisateurController extends BaseController {
   private $dao;
 
   public function __construct() {
@@ -11,7 +11,8 @@ class UtilisateurController {
   }
 
   public function afficherFormCreerUtilisateur() {
-    include('view/creation_utilisateur.php');
+    $donnees = [];
+    $this->genererVue('creation_utilisateur', $donnees);
   }
 
   public function creerUtilisateur() {

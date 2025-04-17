@@ -1,6 +1,6 @@
 <?php
 
-class CompteController {
+class CompteController extends BaseController {
   private $dao;
 
   public function __construct() {
@@ -11,7 +11,8 @@ class CompteController {
   }
 
   public function afficherFormCreerCompte() {
-    include_once 'view/creation_compte.php';
+    $donnees = [];
+    $this->genererVue('creation_compte', $donnees);
   }
 
   public function creerCompte() {
@@ -33,7 +34,8 @@ class CompteController {
   }
 
   public function afficherFormConnexion() {
-    include_once 'view/connexion.php';
+    $donnees = [];
+    $this->genererVue('connexion', $donnees);
   }
 
   public function connexionCompte() {
@@ -83,6 +85,14 @@ class CompteController {
 
   public function afficherListeUtilisateurs() {
     $listeUtilisateurs = $this->listeUtilisateurs();
-    include('view/liste_utilisateurs.php');
-  }
+    
+    // Créer un tableau associatif avec les données à passer à la vue
+    $donnees = [
+        'listeUtilisateurs' => $listeUtilisateurs,
+    ];
+    
+    // Générer la vue en utilisant le tableau de données
+    $this->genererVue('liste_utilisateurs', $donnees);
 }
+}
+
